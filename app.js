@@ -16,16 +16,16 @@ function wishMe() {
     var hour = day.getHours();
 
     if (hour >= 0 && hour < 12) {
-        speak("Good Morning Boss...");
+        speak("Bom Dia chefe...");
     } else if (hour >= 12 && hour < 17) {
-        speak("Good Afternoon Master...");
+        speak("Boa tarde Mestre...");
     } else {
-        speak("Good Evening Sir...");
+        speak("Boa noite senhor...");
     }
 }
 
-window.addEventListener('load', () => {
-    speak("Initializing JARVIS...");
+window.addEventListener('carregar', () => {
+    speak("Inicializando JARVIS...");
     wishMe();
 });
 
@@ -40,45 +40,45 @@ recognition.onresult = (event) => {
 };
 
 btn.addEventListener('click', () => {
-    content.textContent = "Listening...";
+    content.textContent = "Audição...";
     recognition.start();
 });
 
 function takeCommand(message) {
-    if (message.includes('hey') || message.includes('hello')) {
-        speak("Hello Sir, How May I Help You?");
-    } else if (message.includes("open google")) {
+    if (message.includes('ei') || message.includes('olá')) {
+        speak("Olá senhor, em que posso ajudá-lo?");
+    } else if (message.includes("abra o Google")) {
         window.open("https://google.com", "_blank");
-        speak("Opening Google...");
-    } else if (message.includes("open youtube")) {
+        speak("Abrindo o Google...");
+    } else if (message.includes("abra o youtube")) {
         window.open("https://youtube.com", "_blank");
-        speak("Opening Youtube...");
-    } else if (message.includes("open facebook")) {
+        speak("Abrindo o YouTube...");
+    } else if (message.includes("abrir Facebook")) {
         window.open("https://facebook.com", "_blank");
-        speak("Opening Facebook...");
-    } else if (message.includes('what is') || message.includes('who is') || message.includes('what are')) {
+        speak("Abrindo o Facebook...");
+    } else if (message.includes('o que é') || message.includes('quem é') || message.includes('o que são')) {
         window.open(`https://www.google.com/search?q=${message.replace(" ", "+")}`, "_blank");
-        const finalText = "This is what I found on the internet regarding " + message;
+        const finalText = "Isto é o que encontrei na internet sobre " + message;
         speak(finalText);
     } else if (message.includes('wikipedia')) {
         window.open(`https://en.wikipedia.org/wiki/${message.replace("wikipedia", "").trim()}`, "_blank");
-        const finalText = "This is what I found on Wikipedia regarding " + message;
+        const finalText = "Isto é o que encontrei na Wikipedia sobre " + message;
         speak(finalText);
     } else if (message.includes('time')) {
         const time = new Date().toLocaleString(undefined, { hour: "numeric", minute: "numeric" });
-        const finalText = "The current time is " + time;
+        const finalText = "A hora atual é " + time;
         speak(finalText);
     } else if (message.includes('date')) {
         const date = new Date().toLocaleString(undefined, { month: "short", day: "numeric" });
-        const finalText = "Today's date is " + date;
+        const finalText = "A data de hoje é " + date;
         speak(finalText);
-    } else if (message.includes('calculator')) {
-        window.open('Calculator:///');
-        const finalText = "Opening Calculator";
+    } else if (message.includes('calculadora')) {
+        window.open('Calculadora:///');
+        const finalText = "Abra a calculadora";
         speak(finalText);
     } else {
         window.open(`https://www.google.com/search?q=${message.replace(" ", "+")}`, "_blank");
-        const finalText = "I found some information for " + message + " on Google";
+        const finalText = "Encontrei algumas informações para " + message + " no Google";
         speak(finalText);
     }
 }
